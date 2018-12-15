@@ -1,2 +1,3 @@
-# yahoo-finance-api
-API to interact with Yahoo Finance
+# Yahoo Finance API
+
+Minimal API to interact with Yahoo Finance.
