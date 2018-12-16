@@ -5,12 +5,12 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="yahoo_finance_api2",
-    version="0.0.2",
+    version="0.0.4",
     author="Petr Kout",
     description="Yahooo Finance API package",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/pkout/yahoo_finance_api",
+    url="https://github.com/pkout/yahoo_finance_api2",
     packages=setuptools.find_packages(),
     install_requires=[
       "pprint",
