@@ -27,7 +27,7 @@ try:
                                           5)
 except YahooFinanceError as e:
     print(e.message)
-    sys.exit(-1)
+    sys.exit(1)
 
 print(symbol_data)
 ```
