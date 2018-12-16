@@ -22,14 +22,21 @@ class Share(object):
 
 
     def get_historical(self, period_type, period, frequency_type, frequency):
-        data = self._download_symbol_data(period_type, period, 
+        data = self._download_symbol_data(period_type, period,
                                          frequency_type, frequency)
+
+        valid_frequency_types = [
+            FREQUENCY_TYPE_MINUTE, FREQUENCY_TYPE_DAY,
+            FREQUENCY_TYPE_WEEK, FREQUENCY_TYPE_MONTH
+        ]
+        if frequency_type not in valid_frequency_types:
+            raise ValueError('Invalid frequency type: ' % frequency_type)
 
         # for i in range(len(data['timestamp'])):
         #     if i < (len(data['timestamp']) - 1):
         #         print(datetime.datetime.utcfromtimestamp(
         #                 data['timestamp'][i + 1]
-        #             ).strftime('%Y-%m-%d %H:%M:%S'), 
+        #             ).strftime('%Y-%m-%d %H:%M:%S'),
         #             data['timestamp'][i + 1] - data['timestamp'][i]
         #         )
 
@@ -45,8 +52,9 @@ class Share(object):
             'volume': data['indicators']['quote'][0]['volume']
         }
 
-        return return_data    
-    
+        return return_data
+
+
     def _set_time_frame(self, periodType, period):
         now = datetime.datetime.now()
 
@@ -62,13 +70,15 @@ class Share(object):
         elif periodType == PERIOD_TYPE_YEAR:
             period = min(period, 59)
             start_time = now - datetime.timedelta(days=period * 365)
+        else:
+            raise ValueError('Invalid period type: ' % periodType)
 
         end_time = now
 
         return start_time.strftime("%s"), end_time.strftime("%s")
 
 
-    def _download_symbol_data(self, period_type, period, 
+    def _download_symbol_data(self, period_type, period,
                               frequency_type, frequency):
         start_time, end_time = self._set_time_frame(period_type, period)
         url = (
@@ -76,7 +86,7 @@ class Share(object):
             '&period1={1}&period2={2}&interval={3}&'
             'includePrePost=true&events=div%7Csplit%7Cearn&lang=en-US&'
             'region=US&crumb=t5QZMhgytYZ&corsDomain=finance.yahoo.com'
-        ).format(self.symbol, start_time, end_time, 
+        ).format(self.symbol, start_time, end_time,
                  self._get_frequency_str(frequency_type, frequency))
 
         resp_json = requests.get(url).json()
