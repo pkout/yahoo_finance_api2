@@ -4,7 +4,9 @@ Minimal API to interact with Yahoo Finance.
 
 ## Installation
 
-`pip install yahoo_finance_api2`
+```
+pip install yahoo_finance_api2
+```
 
 ## Usage
 
