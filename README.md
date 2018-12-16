@@ -2,6 +2,10 @@
 
 Minimal API to interact with Yahoo Finance.
 
+## Installation
+
+`pip install yahoo_finance_api2`
+
 ## Usage
 
 The following example retrieves 10 days of 5 minute frequency Microsoft (MSFT) stock data.
