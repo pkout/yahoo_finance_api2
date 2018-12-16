@@ -25,3 +25,7 @@ except YahooFinanceError as e:
 
 print(symbol_data)
 ```
+
+## API
+
+* `get_historical(period_type, period, frequency_type, frequency)` - Returns historical data for the given period type ('day', 'month', 'year'), period (1, 5, 10, etc.), frequency_type ('m', 'd'), and frequency (1, 5, 10, etc.). Only certain combinations of these parameters work. 
