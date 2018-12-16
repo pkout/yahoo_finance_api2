@@ -13,7 +13,7 @@ try:
                                           15)
 except YahooFinanceError as e:
     print(e.message)
-    sys.exit(-1)
+    sys.exit(1)
 
 pp = pprint.PrettyPrinter(depth=6)
 pp.pprint(symbol_data)
