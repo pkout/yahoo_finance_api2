@@ -26,6 +26,18 @@ except YahooFinanceError as e:
 print(symbol_data)
 ```
 
+The output format:
+
+```
+{
+  'open': [...],
+  'high': [...],
+  'low': [...],
+  'close': [...],
+  'volume': [...]
+}
+```
+
 ## API
 
 * Class `Share`:
