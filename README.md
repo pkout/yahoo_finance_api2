@@ -30,6 +30,7 @@ The output format:
 
 ```
 {
+  'timestamp': [...],
   'open': [...],
   'high': [...],
   'low': [...],
