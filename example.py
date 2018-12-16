@@ -10,7 +10,7 @@ try:
     symbol_data = my_share.get_historical(share.PERIOD_TYPE_DAY,
                                           3,
                                           share.FREQUENCY_TYPE_MINUTE,
-                                          5)
+                                          15)
 except YahooFinanceError as e:
     print(e.message)
     sys.exit(-1)

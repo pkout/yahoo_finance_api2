@@ -5,7 +5,15 @@ import yaml
 from yahoo_finance_api2.exceptions import YahooFinanceError
 
 PERIOD_TYPE_DAY = 'day'
+PERIOD_TYPE_WEEK = 'week'
+PERIOD_TYPE_MONTH = 'month'
+PERIOD_TYPE_YEAR = 'year'
+
+# Valid frequencies: [1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h, 1d, 5d, 1wk, 1mo, 3mo]
 FREQUENCY_TYPE_MINUTE = 'm'
+FREQUENCY_TYPE_DAY = 'd'
+FREQUENCY_TYPE_WEEK = 'wk'
+FREQUENCY_TYPE_MONTH = 'mo'
 
 class Share(object):
 
@@ -41,9 +49,20 @@ class Share(object):
     
     def _set_time_frame(self, periodType, period):
         now = datetime.datetime.now()
+
         if periodType == PERIOD_TYPE_DAY:
             period = min(period, 59)
             start_time = now - datetime.timedelta(days=period)
+        elif periodType == PERIOD_TYPE_WEEK:
+            period = min(period, 59)
+            start_time = now - datetime.timedelta(days=period * 7)
+        elif periodType == PERIOD_TYPE_MONTH:
+            period = min(period, 59)
+            start_time = now - datetime.timedelta(days=period * 30)
+        elif periodType == PERIOD_TYPE_YEAR:
+            period = min(period, 59)
+            start_time = now - datetime.timedelta(days=period * 365)
+
         end_time = now
 
         return start_time.strftime("%s"), end_time.strftime("%s")
