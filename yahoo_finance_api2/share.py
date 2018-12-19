@@ -23,12 +23,13 @@ class Share(object):
 
     def get_historical(self, period_type, period, frequency_type, frequency):
         data = self._download_symbol_data(period_type, period,
-                                         frequency_type, frequency)
+                                          frequency_type, frequency)
 
         valid_frequency_types = [
             FREQUENCY_TYPE_MINUTE, FREQUENCY_TYPE_DAY,
             FREQUENCY_TYPE_WEEK, FREQUENCY_TYPE_MONTH
         ]
+
         if frequency_type not in valid_frequency_types:
             raise ValueError('Invalid frequency type: ' % frequency_type)
 
@@ -44,7 +45,7 @@ class Share(object):
             return None
 
         return_data = {
-            'timestamp': data['timestamp'],
+            'timestamp': [x * 1000 for x in data['timestamp']],
             'open': data['indicators']['quote'][0]['open'],
             'high': data['indicators']['quote'][0]['high'],
             'low': data['indicators']['quote'][0]['low'],
