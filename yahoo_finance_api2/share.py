@@ -56,23 +56,23 @@ class Share(object):
         return return_data
 
 
-    def _set_time_frame(self, periodType, period):
+    def _set_time_frame(self, period_type, period):
         now = datetime.datetime.now()
 
-        if periodType == PERIOD_TYPE_DAY:
+        if period_type == PERIOD_TYPE_DAY:
             period = min(period, 59)
             start_time = now - datetime.timedelta(days=period)
-        elif periodType == PERIOD_TYPE_WEEK:
+        elif period_type == PERIOD_TYPE_WEEK:
             period = min(period, 59)
             start_time = now - datetime.timedelta(days=period * 7)
-        elif periodType == PERIOD_TYPE_MONTH:
+        elif period_type == PERIOD_TYPE_MONTH:
             period = min(period, 59)
             start_time = now - datetime.timedelta(days=period * 30)
-        elif periodType == PERIOD_TYPE_YEAR:
+        elif period_type == PERIOD_TYPE_YEAR:
             period = min(period, 59)
             start_time = now - datetime.timedelta(days=period * 365)
         else:
-            raise ValueError('Invalid period type: ' % periodType)
+            raise ValueError('Invalid period type: ' % period_type)
 
         end_time = now
 
