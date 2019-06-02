@@ -76,7 +76,7 @@ class Share(object):
 
         end_time = now
 
-        return start_time.strftime("%s"), end_time.strftime("%s")
+        return int(start_time.timestamp()), int(end_time.timestamp())
 
 
     def _download_symbol_data(self, period_type, period,
