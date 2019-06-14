@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="yahoo_finance_api2",
-    version="0.0.7",
+    version="0.0.8",
     author="Petr Kout",
     description="Yahooo Finance API package",
     long_description=long_description,

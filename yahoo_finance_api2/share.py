@@ -11,6 +11,7 @@ PERIOD_TYPE_YEAR = 'year'
 
 # Valid frequencies: [1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h, 1d, 5d, 1wk, 1mo, 3mo]
 FREQUENCY_TYPE_MINUTE = 'm'
+FREQUENCY_TYPE_HOUR = 'h'
 FREQUENCY_TYPE_DAY = 'd'
 FREQUENCY_TYPE_WEEK = 'wk'
 FREQUENCY_TYPE_MONTH = 'mo'
@@ -26,7 +27,7 @@ class Share(object):
                                           frequency_type, frequency)
 
         valid_frequency_types = [
-            FREQUENCY_TYPE_MINUTE, FREQUENCY_TYPE_DAY,
+            FREQUENCY_TYPE_MINUTE, FREQUENCY_TYPE_HOUR, FREQUENCY_TYPE_DAY,
             FREQUENCY_TYPE_WEEK, FREQUENCY_TYPE_MONTH
         ]
 
@@ -88,7 +89,7 @@ class Share(object):
             'includePrePost=true&events=div%7Csplit%7Cearn&lang=en-US&'
             'region=US&crumb=t5QZMhgytYZ&corsDomain=finance.yahoo.com'
         ).format(self.symbol, start_time, end_time,
-                 self._get_frequency_str(frequency_type, frequency))
+                 self._frequency_str(frequency_type, frequency))
 
         resp_json = requests.get(url).json()
 
@@ -113,5 +114,5 @@ class Share(object):
             )
         )
 
-    def _get_frequency_str(self, frequency_type, frequency):
+    def _frequency_str(self, frequency_type, frequency):
         return '{1}{0}'.format(frequency_type, frequency)
