@@ -51,6 +51,7 @@ class Share(object):
             'high': data['indicators']['quote'][0]['high'],
             'low': data['indicators']['quote'][0]['low'],
             'close': data['indicators']['quote'][0]['close'],
+            'adj_close': data['indicators']['quote'][0]['adj_close'],
             'volume': data['indicators']['quote'][0]['volume']
         }
 
