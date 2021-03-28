@@ -41,6 +41,7 @@ The output format:
   'high': [...],
   'low': [...],
   'close': [...],
+  'adj_close': [...],
   'volume': [...]
 }
 ```
