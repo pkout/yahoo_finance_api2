@@ -91,7 +91,8 @@ class Share(object):
         ).format(self.symbol, start_time, end_time,
                  self._frequency_str(frequency_type, frequency))
 
-        resp_json = requests.get(url).json()
+        headers = {'User-Agent': ''}
+        resp_json = requests.get(url, headers=headers).json()
 
         if self._is_yf_response_error(resp_json):
             self._raise_yf_response_error(resp_json)
